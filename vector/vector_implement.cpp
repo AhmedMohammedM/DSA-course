@@ -49,6 +49,7 @@ class Vector {
 
 int main(){
 
+    Vector v(10);
 
     return 0;
 }
