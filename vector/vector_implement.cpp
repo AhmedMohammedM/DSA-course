@@ -43,6 +43,16 @@ class Vector {
                     return i;
             return -1; // for not found value
         }
+    // creat a fun to add item to end of vector
+        void push_back(int value){
+            int array_02 = new int[size+1]; // creat new array
+            for(int i=0; i < size; ++i)
+                array_02[i] = array[i];
+            array_02[size++] = value;
+            swap(array,array_02);
+            delete[] array2;
+
+        }
 
 };
 
