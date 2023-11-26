@@ -5,7 +5,8 @@ using namespace std;
 // create a class of Vector with capital V
 class Vector {
     private:
-        int size {};
+        int capacity {};    // astual size
+        int size {0};       // user zise
         int *array = nullptr ;
     
     public:
@@ -13,8 +14,11 @@ class Vector {
         Vector(int size): size(size){
             if(size < 0)
                 size =1;
+            capacity = size + 10; // for expanding size with capacity trick
             array=new int [size] {};
         }
+    // capacity Trick
+
     //this fun is (( called deconstructor )) begin with ~ 
         ~Vector(){
             delete[] array;
@@ -43,8 +47,8 @@ class Vector {
                     return i;
             return -1; // for not found value
         }
-    // creat a fun to add item to end of vector
-        void push_back(int value){
+    // creat a fun to add item to end of vector befor //! capacity Trick
+    /*//*  void push_back(int value){
             int *array_02 = new int[size+1]; // 1. creat new array
             for(int i=0; i < size; ++i)      // 2. copy old element
                 array_02[i] = array[i]; 
@@ -52,6 +56,24 @@ class Vector {
             swap(array,array_02);            // 4. swapping the pointer form old arr to new one
             delete[] array_02;               // 5. delete the new array
 
+        }
+    */
+    //? now to push_back new item we creat 2 fun 1. to push_back 2. to expand size
+        void push_back(int value){
+            if (size == capacity)
+                expand_capacity();
+            array[size++] = value;
+        }
+
+    // fun to expand the size of array
+        void expand_capacity(){
+            capacity*=2; // doubling the size of pointerd array
+            cout<< "expand capacity to "<< capacity << "\n";
+            int *array_02 = new int[capacity] {}; 
+            for(int i=0; i < size; ++i)
+                array_02[i] = array[i];  
+            swap(array,array_02);
+            delete[] array_02;
         }
 
 };
