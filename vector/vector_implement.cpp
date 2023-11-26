@@ -45,12 +45,12 @@ class Vector {
         }
     // creat a fun to add item to end of vector
         void push_back(int value){
-            int array_02 = new int[size+1]; // creat new array
-            for(int i=0; i < size; ++i)
-                array_02[i] = array[i];
-            array_02[size++] = value;
-            swap(array,array_02);
-            delete[] array2;
+            int *array_02 = new int[size+1]; // 1. creat new array
+            for(int i=0; i < size; ++i)      // 2. copy old element
+                array_02[i] = array[i]; 
+            array_02[size++] = value;        // 3. putting the new value 
+            swap(array,array_02);            // 4. swapping the pointer form old arr to new one
+            delete[] array_02;               // 5. delete the new array
 
         }
 
