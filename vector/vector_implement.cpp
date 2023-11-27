@@ -91,7 +91,7 @@ class Vector {
                 array[i+1] = array[i];
             
             array[idx] = value; // putting the value
-            ++ size;
+            ++ size; // this step to increse the size after adding item
 
             }
                 
