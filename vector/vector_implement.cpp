@@ -17,13 +17,14 @@ class Vector {
             capacity = size + 10; // for expanding size with capacity trick
             array=new int [size] {};
         }
-    // capacity Trick
+    
 
     //this fun is (( called deconstructor )) begin with ~ 
         ~Vector(){
             delete[] array;
             array = nullptr;
         }
+
     // let build a set & get functions
         int get(int idx){
             assert(0 <= idx && idx < size); // to check if the idx in range
@@ -34,12 +35,14 @@ class Vector {
             assert( 0 <= idx && idx < size);
             array[idx] = val;
         }
+
     // to print all items of vector
         void print(){
             for(int i=0; i < size; ++i)
                 cout<<array[i]<<" ";
             cout<<"\n";
             }
+
     // to find a value in vector and return its index
         int find(int val){
             for(int i=0; i < size; ++i)
@@ -47,6 +50,7 @@ class Vector {
                     return i;
             return -1; // for not found value
         }
+
     // creat a fun to add item to end of vector befor //! capacity Trick
     /*//*  void push_back(int value){
             int *array_02 = new int[size+1]; // 1. creat new array
@@ -76,12 +80,31 @@ class Vector {
             delete[] array_02;
         }
 
+    // bulit a fun insertion operation to insert item in any place
+        void insert(int value, int idx){
+            assert(idx < 0 && idx > size); // to check is idx valid
+
+            if (size == capacity)  // check there is place to add item using capacity trick
+               expand_capacity();
+
+            for(int i = size-1; i >= idx; --i) // to shifting right
+                array[i+1] = array[i];
+            
+            array[idx] = value; // putting the value
+            ++ size;
+
+            }
+                
+
+        
+
 };
 
 
 int main(){
+    int n=4;
+    Vector v(n);
 
-    Vector v(10);
 
     return 0;
 }
