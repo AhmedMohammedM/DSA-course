@@ -164,8 +164,19 @@ class Vector {
         }
 
     // Problem 5: Improved search - each time you find the value, you shift it one step to the left
+    // time O(n), space O(1)
         int find_transposition(int value){
             
+            for(int i = 0; i < size; ++i){
+                if (array[i] == value){
+                    if (i == 0)
+                        return 0;
+
+                    swap(array[i],array[i-1]);
+                    return i-1;
+                }
+            }
+            return -1 ;
         }
 };
 
@@ -179,7 +190,7 @@ int main(){
     v.print();
     cout<< v.pop(2)<<"\n";
     v.print();
-    
-
+    v.find_transposition(23);
+    v.print();
     return 0;
 }
