@@ -34,7 +34,7 @@ ll fib(int n){
 
 // we rewrite the fun by compatitive programming impelementation
 
-typedef long long ll;
+/*typedef long long ll;
 const int MAX = 80+1;
 ll memory[MAX];
 
@@ -49,14 +49,33 @@ ll fib(int n){
 
     return ret=fib(n-1)+fib(n-2);
 }
+*/
+string res="    ";
+void rec(int idx){
+    if (idx == (int)res.size()){
+        cout<<res<<"\n";
+        return;
+    }
+
+    res[idx]='0';
+    rec(idx+1);
+    
+    res[idx]='1';
+    rec(idx+1);
+
+    res[idx] = ' ';
+    }
+
 
 int main(){
+
+    rec(0);
     //int n = 80;
     //memory.resize(n+1);
     //fill(memory.begin(),memory.end(),-1); // O(n)
     // to set array with -1
-    memset(memory,-1,sizeof(memory)); // more speed than fill fun
-    cout<<fib(80)<<"\n";
+    //memset(memory,-1,sizeof(memory)); // more speed than fill fun
+    //cout<<fib(80)<<"\n";
     //cout<<fib(40); // output: 165580141 with time: 7.354 sec
     //cout<<fib(80); // this never end why? find any observation 
 
